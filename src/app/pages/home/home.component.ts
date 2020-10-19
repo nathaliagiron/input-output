@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
 
   public users: User;
   public flag: boolean = false;
+  public usuario: User; 
   
 
   constructor(private _cardService: CardService, public router: Router) { }
@@ -19,18 +20,18 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.getUsers();
   }
-
   
   public getUsers(): void{
     this._cardService.sendGetRequest()
     .subscribe((res: any) => {
       this.users = res.response;
       this.flag = true;
-      console.log(this.users);
     },
     err => {
       throw new Error(err)
     })
   }
-
+  public showAlert(user: User){
+    alert(user.name + ' ' + user.lastName);
+  }
 }

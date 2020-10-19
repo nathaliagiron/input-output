@@ -1,5 +1,15 @@
-<h4> Welcome from home component </h4>
-<app-get-card 
-    [users]="users">
-</app-get-card>
-
+<div class="container mt-2">
+    <div *ngIf="!flag">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">Loading users...</h1>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row ">
+        <div *ngFor="let user of users" class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <app-get-card [user]="user" (userToAlert)="showAlert($event)"></app-get-card>
+        </div>
+    </div>
+</div>

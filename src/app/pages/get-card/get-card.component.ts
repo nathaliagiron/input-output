@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 
 @Component({
@@ -8,15 +8,17 @@ import { User } from 'src/app/models/user.model';
 })
 export class GetCardComponent implements OnInit {
 
-  @Input() users: any;  
+  @Input() user: User;  
+  @Output() userToAlert = new EventEmitter<User>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  private showAlert(user: User){
-    alert(user.name + ' ' + user.lastName);
+  generateAlert(value: User){
+    this.userToAlert.emit(value);
   }
+
 }
 
